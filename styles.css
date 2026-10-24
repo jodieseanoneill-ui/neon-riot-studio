@@ -8,18 +8,21 @@
   --muted: #c9c9d6;
   --pink: #ff2bd6;
   --cyan: #00f0ff;
-  --acid: #39ff14;
-  --laser: #fff200;
-  --uv: #9d00ff;
-  --orange: #ff7a00;
+  --violet: #9d4dff;
+  --lime: #b6ff00; /* sparing accent only */
+  /* legacy names, mapped onto the 4-colour palette */
+  --uv: var(--violet);
+  --acid: var(--violet);
+  --laser: var(--cyan);
   --display: 'Bungee', 'Arial Black', sans-serif;
   --body: 'Space Grotesk', system-ui, sans-serif;
   --concept-font: 'Monoton';
   --radius: 14px;
   --glow-pink: 0 0 4px #fff, 0 0 10px var(--pink), 0 0 24px var(--pink), 0 0 52px var(--pink);
   --glow-cyan: 0 0 4px #fff, 0 0 10px var(--cyan), 0 0 24px var(--cyan), 0 0 52px var(--cyan);
-  --glow-acid: 0 0 4px #fff, 0 0 10px var(--acid), 0 0 24px var(--acid), 0 0 52px var(--acid);
-  --glow-laser: 0 0 4px #fff, 0 0 10px var(--laser), 0 0 24px var(--laser), 0 0 52px var(--laser);
+  --glow-acid: 0 0 4px #fff, 0 0 10px var(--violet), 0 0 24px var(--violet), 0 0 52px var(--violet);
+  --glow-lime: 0 0 4px #fff, 0 0 10px var(--lime), 0 0 24px var(--lime), 0 0 52px var(--lime);
+  --glow-laser: var(--glow-cyan);
   --glow-uv: 0 0 4px #fff, 0 0 10px var(--uv), 0 0 24px var(--uv), 0 0 52px var(--uv);
 }
 
@@ -38,14 +41,14 @@ main { overflow-x: clip; }
 img { max-width: 100%; }
 a { color: var(--cyan); }
 ul, ol { list-style: none; }
-:focus-visible { outline: 3px solid var(--laser); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
 
 .container { width: min(1180px, 100%); margin: 0 auto; padding: 0 20px; }
 .section { padding: 72px 0; position: relative; }
 
 .skip-link {
   position: absolute; left: 12px; top: -60px; z-index: 100;
-  background: var(--laser); color: #000; padding: 10px 16px; font-weight: 700; border-radius: 8px;
+  background: var(--lime); color: #000; padding: 10px 16px; font-weight: 700; border-radius: 8px;
 }
 .skip-link:focus { top: 12px; }
 
@@ -55,7 +58,7 @@ ul, ol { list-style: none; }
   background: rgba(0,0,0,.88);
   backdrop-filter: blur(8px);
   border-bottom: 2px solid transparent;
-  border-image: linear-gradient(90deg, var(--pink), var(--cyan), var(--acid), var(--laser), var(--uv)) 1;
+  border-image: linear-gradient(90deg, var(--pink), var(--cyan), var(--violet), var(--pink)) 1;
 }
 .header .container { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
 .logo, .footer-logo { font-family: var(--display); font-size: 1.35rem; text-decoration: none; line-height: 1; letter-spacing: .02em; }
@@ -87,8 +90,8 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
 
 .eyebrow {
   display: inline-block; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .8rem;
-  color: #000; background: var(--acid); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
-  box-shadow: 0 0 18px var(--acid);
+  color: #000; background: var(--lime); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
+  box-shadow: 0 0 18px var(--lime);
 }
 
 .hero {
@@ -107,12 +110,12 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
   line-height: 1.02; margin-bottom: 22px; text-shadow: var(--glow-pink);
   text-wrap: balance;
 }
-.hero-heading .flick { color: #fff; text-shadow: var(--glow-cyan); animation: flicker 5s linear infinite; }
+.hero-heading .flick { color: #fff; text-shadow: var(--glow-cyan); animation: buzz 6.6s linear infinite; }
 .hero-heading .hl {
-  background: linear-gradient(90deg, var(--laser), var(--acid), var(--cyan), var(--pink), var(--laser));
+  background: linear-gradient(90deg, var(--pink), var(--cyan), var(--violet), var(--pink));
   background-size: 300% 100%;
   -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none;
-  filter: drop-shadow(0 0 10px rgba(255,242,0,.55)) drop-shadow(0 0 26px rgba(255,43,214,.45));
+  filter: drop-shadow(0 0 10px rgba(0,240,255,.55)) drop-shadow(0 0 26px rgba(255,43,214,.5));
   animation: shift 8s linear infinite;
 }
 /* Neon-sign flicker: a couple of short dips per 5s cycle (well under 3 flashes/second) */
@@ -157,41 +160,50 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
 .pulse { animation: pulse 2.2s ease-in-out infinite; }
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 10px var(--pink), 0 0 22px var(--pink); }
-  50% { box-shadow: 0 0 22px var(--pink), 0 0 60px var(--pink), 0 0 90px rgba(255,43,214,.6); }
+  50% { box-shadow: 0 0 22px var(--pink), 0 0 56px var(--violet), 0 0 90px rgba(157,77,255,.7); }
+}
+.pulse-cyan { animation: pulse-cyan 2.6s ease-in-out infinite; }
+@keyframes pulse-cyan {
+  0%, 100% { box-shadow: 0 0 10px var(--cyan), inset 0 0 10px rgba(0,240,255,.3); }
+  50% { box-shadow: 0 0 22px var(--cyan), 0 0 54px var(--cyan), 0 0 80px rgba(157,77,255,.6), inset 0 0 18px rgba(0,240,255,.5); }
 }
 
 /* ---------- Ticker ---------- */
 .ticker {
   overflow: hidden; white-space: nowrap; background: #000; padding: 14px 0;
-  border-block: 3px solid var(--laser); box-shadow: 0 0 22px rgba(255,242,0,.6), inset 0 0 18px rgba(255,242,0,.25);
+  border-block: 3px solid var(--pink); box-shadow: 0 0 22px rgba(255,43,214,.6), inset 0 0 18px rgba(255,43,214,.25);
   font-family: var(--display); font-size: clamp(1.2rem, 5vw, 2rem); transform: rotate(-2deg) scale(1.04); margin: 10px 0 20px;
 }
 .ticker-track { display: flex; width: max-content; animation: scroll 28s linear infinite; }
 .ticker-group { flex: none; padding-right: .4em; color: #fff; }
 .ticker-group span:nth-child(5n+1) { color: var(--pink); text-shadow: 0 0 10px var(--pink); }
 .ticker-group span:nth-child(5n+2) { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
-.ticker-group span:nth-child(5n+3) { color: var(--laser); text-shadow: 0 0 10px var(--laser); }
-.ticker-group span:nth-child(5n+4) { color: var(--acid); text-shadow: 0 0 10px var(--acid); }
-.ticker-group span:nth-child(5n+5) { color: #c46bff; text-shadow: 0 0 10px var(--uv); }
+.ticker-group span:nth-child(5n+3) { color: #c49bff; text-shadow: 0 0 10px var(--violet); }
+.ticker-group span:nth-child(5n+4) { color: var(--lime); text-shadow: 0 0 10px var(--lime); }
+.ticker-group span:nth-child(5n+5) { color: var(--pink); text-shadow: 0 0 10px var(--pink); }
 @keyframes scroll { to { transform: translateX(-50%); } }
 
 /* ---------- Animated gradient border cards ---------- */
 .card, .package, .why-item, .step, .social-proof, .faq-item {
   position: relative; border-radius: var(--radius); background: #000; isolation: isolate;
 }
+.card, .package, .social-proof { overflow: hidden; background: #1a0a26; }
 .card::before, .package::before, .social-proof::before {
-  content: ''; position: absolute; inset: -3px; z-index: -1; border-radius: calc(var(--radius) + 3px);
-  background: linear-gradient(120deg, var(--pink), var(--cyan), var(--acid), var(--laser), var(--uv), var(--pink));
-  background-size: 300% 300%; animation: border-shift 6s linear infinite;
+  content: ''; position: absolute; z-index: -1; left: 50%; top: 50%; width: 170%; aspect-ratio: 1;
+  background: conic-gradient(from 0deg, transparent 0 8%, var(--pink) 20%, transparent 26% 42%, var(--cyan) 54%, transparent 60% 76%, var(--violet) 88%, transparent 94%);
+  transform: translate(-50%, -50%) rotate(0deg); animation: chase 4.5s linear infinite; will-change: transform;
 }
+.package::before { animation-duration: 5.5s; animation-direction: reverse; }
+.social-proof::before { width: 130%; }
 .card::after, .package::after, .social-proof::after {
-  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: var(--radius); background: #000;
+  content: ''; position: absolute; inset: 3px; z-index: -1; border-radius: calc(var(--radius) - 3px); background: #000;
 }
+@keyframes chase { to { transform: translate(-50%, -50%) rotate(360deg); } }
 @keyframes border-shift { to { background-position: 300% 0; } }
 
 .cards { display: grid; gap: 24px; }
 .card { padding: 28px 24px; box-shadow: 0 0 28px rgba(255,43,214,.25); }
-.card-icon { font-size: 2.4rem; margin-bottom: 12px; filter: drop-shadow(0 0 10px var(--laser)); }
+.card-icon { font-size: 2.4rem; margin-bottom: 12px; filter: drop-shadow(0 0 10px var(--cyan)); }
 .card-heading { font-size: 1.45rem; margin-bottom: 8px; }
 .card:nth-child(1) .card-heading { text-shadow: var(--glow-pink); }
 .card:nth-child(2) .card-heading { text-shadow: var(--glow-cyan); }
@@ -206,7 +218,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
   font-family: var(--display); font-size: 1.5rem; color: #000; background: var(--acid); box-shadow: 0 0 18px var(--acid);
 }
 .why-item:nth-child(2) .why-number { background: var(--cyan); box-shadow: 0 0 18px var(--cyan); }
-.why-item:nth-child(3) .why-number { background: var(--laser); box-shadow: 0 0 18px var(--laser); }
+.why-item:nth-child(3) .why-number { background: var(--lime); box-shadow: 0 0 18px var(--lime); }
 .why-item:nth-child(4) .why-number { background: var(--pink); box-shadow: 0 0 18px var(--pink); }
 .why-title { font-size: 1.2rem; margin-bottom: 6px; }
 
@@ -214,7 +226,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
 .concepts-note { text-align: center; color: var(--muted); max-width: 46ch; margin: -18px auto 28px; }
 .font-switcher {
   border: 2px dashed var(--uv); border-radius: var(--radius); padding: 22px 16px; margin-bottom: 36px; text-align: center;
-  box-shadow: 0 0 24px rgba(157,0,255,.4), inset 0 0 24px rgba(157,0,255,.2);
+  box-shadow: 0 0 24px rgba(157,77,255,.4), inset 0 0 24px rgba(157,77,255,.2);
 }
 .font-switcher-heading { font-size: 1.3rem; text-shadow: var(--glow-uv); margin-bottom: 16px; }
 .font-chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -226,8 +238,8 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
 .font-chip[data-font="Bebas Neue"] { font-size: 1.5rem; }
 .font-chip:hover { border-color: var(--cyan); }
 .font-chip[aria-pressed="true"] {
-  color: var(--laser); border-color: var(--laser); text-shadow: 0 0 8px var(--laser);
-  box-shadow: 0 0 14px var(--laser), inset 0 0 12px rgba(255,242,0,.3);
+  color: #fff; border-color: var(--pink); text-shadow: 0 0 8px var(--pink);
+  box-shadow: 0 0 14px var(--pink), inset 0 0 12px rgba(255,43,214,.3);
 }
 .font-live-caption { margin-top: 14px; color: var(--cyan); font-weight: 700; }
 
@@ -239,9 +251,9 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
 
 .mock { --a: var(--pink); --b: var(--uv); --c: #fff; border-radius: 12px; overflow: hidden; border: 2px solid var(--a); box-shadow: 0 0 18px var(--a), 0 0 50px color-mix(in srgb, var(--b) 60%, transparent); }
 .mock-bar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: #111; border-bottom: 1px solid #2a2a2a; }
-.mock-bar i { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
-.mock-bar i:nth-child(2) { background: #febc2e; }
-.mock-bar i:nth-child(3) { background: #28c840; }
+.mock-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 6px var(--pink); }
+.mock-bar i:nth-child(2) { background: var(--violet); box-shadow: 0 0 6px var(--violet); }
+.mock-bar i:nth-child(3) { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
 .mock-url { flex: 1; margin-left: 8px; font-size: .75rem; color: #aaa; background: #000; border-radius: 6px; padding: 2px 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mock-page { padding: 16px 18px 26px; min-height: 250px; background: radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--b) 55%, transparent), transparent 60%), radial-gradient(circle at 10% 100%, color-mix(in srgb, var(--a) 40%, transparent), transparent 55%), #000; }
 .mock-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 26px; font-size: .78rem; }
@@ -256,26 +268,26 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
   display: inline-block; font-family: var(--concept-font), var(--display); font-size: 1rem; padding: 10px 18px; border-radius: 999px;
   color: #000; background: var(--c); box-shadow: 0 0 14px var(--c), 0 0 30px var(--a);
 }
-.c-club .mock { --a: #ff2bd6; --b: #9d00ff; --c: #ff2bd6; }
-.c-esports .mock { --a: #00f0ff; --b: #39ff14; --c: #39ff14; }
-.c-esports .mock-page { background-image: linear-gradient(rgba(0,240,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,.12) 1px, transparent 1px), radial-gradient(circle at 80% 10%, rgba(57,255,20,.35), transparent 60%); background-size: 22px 22px, 22px 22px, auto; }
-.c-street .mock { --a: #ff7a00; --b: #ff2bd6; --c: #fff200; }
+.c-club .mock { --a: #ff2bd6; --b: #9d4dff; --c: #ff2bd6; }
+.c-esports .mock { --a: #00f0ff; --b: #9d4dff; --c: #b6ff00; }
+.c-esports .mock-page { background-image: linear-gradient(rgba(0,240,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,.12) 1px, transparent 1px), radial-gradient(circle at 80% 10%, rgba(157,77,255,.4), transparent 60%); background-size: 22px 22px, 22px 22px, auto; }
+.c-street .mock { --a: #9d4dff; --b: #ff2bd6; --c: #00f0ff; }
 
 /* ---------- Packages ---------- */
 .packages { display: grid; gap: 26px; }
 .package { padding: 28px 24px; }
 .package-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
 .package-name { font-family: var(--display); font-size: 1.45rem; text-shadow: var(--glow-cyan); }
-.package-price { font-family: var(--display); font-size: 2.2rem; color: var(--laser); text-shadow: 0 0 10px var(--laser), 0 0 28px rgba(255,242,0,.6); }
+.package-price { font-family: var(--display); font-size: 2.2rem; color: #fff; text-shadow: 0 0 6px #fff, 0 0 14px var(--pink), 0 0 32px var(--pink); }
 .package.featured { box-shadow: 0 0 40px rgba(255,43,214,.5); }
 .package.featured .package-name { text-shadow: var(--glow-pink); }
 .package-features li { padding: 8px 0 8px 28px; position: relative; border-top: 1px solid #1d1d1d; }
-.package-features li::before { content: '✦'; position: absolute; left: 0; color: var(--acid); text-shadow: 0 0 8px var(--acid); }
+.package-features li::before { content: '✦'; position: absolute; left: 0; color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
 .packages-note { margin-top: 26px; text-align: center; color: #000; background: var(--laser); border-radius: 10px; padding: 12px 16px; font-weight: 500; }
 
 /* ---------- Process ---------- */
 .process-steps { display: grid; gap: 18px; counter-reset: none; }
-.step { display: flex; gap: 18px; align-items: flex-start; padding: 20px; border: 2px solid var(--uv); box-shadow: 0 0 18px rgba(157,0,255,.45); }
+.step { display: flex; gap: 18px; align-items: flex-start; padding: 20px; border: 2px solid var(--uv); box-shadow: 0 0 18px rgba(157,77,255,.45); }
 .step-number {
   flex: none; font-family: var(--display); font-size: 2.4rem; line-height: 1; width: 52px; text-align: center;
   color: #fff; text-shadow: var(--glow-uv);
@@ -309,7 +321,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
 .contact-lead { text-align: center; color: var(--muted); max-width: 44ch; margin: -14px auto 26px; }
 .contact-form {
   display: grid; gap: 18px; max-width: 640px; margin: 0 auto; padding: 24px 20px; border-radius: var(--radius);
-  border: 2px solid var(--acid); box-shadow: 0 0 26px rgba(57,255,20,.4);
+  border: 2px solid var(--acid); box-shadow: 0 0 26px rgba(157,77,255,.4);
 }
 .form-label { display: block; font-weight: 700; margin-bottom: 6px; }
 .form-input, .form-select, .form-textarea {
@@ -367,3 +379,198 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
   .section-heading::before, .section-heading::after { display: none; }
 }
 .font-chip:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+
+/* =====================================================================
+   v2: MORE NEON LIGHTS. Palette is locked to 4 colours:
+   pink #ff2bd6 · cyan #00f0ff · violet #9d4dff · lime #b6ff00 (accent only).
+   Safety: no element dips more than ~2 times in any second (WCAG 2.3.1 limit is 3);
+   every dip-to-dip gap is >= 480ms, dips are partial (opacity, never a white strobe),
+   and no large-area flashing. All motion stops under prefers-reduced-motion.
+   ===================================================================== */
+
+/* Irregular neon-tube flicker. At 6.6s+ a cycle: dips of ~170ms, gaps >= 350ms. */
+@keyframes buzz {
+  0%, 7.9% { opacity: 1; }
+  8%, 10.4% { opacity: .25; }
+  10.5%, 15.9% { opacity: 1; }
+  16%, 18.4% { opacity: .4; }
+  18.5%, 60.9% { opacity: 1; }
+  61%, 63.9% { opacity: .2; }
+  64%, 100% { opacity: 1; }
+}
+/* One broken letter that drops out once per cycle (~250ms) */
+@keyframes letter-drop { 0%, 54.9% { opacity: 1; } 55%, 60.9% { opacity: .12; } 61%, 100% { opacity: 1; } }
+
+.logo-b { display: inline-block; animation: buzz 9.3s linear infinite; animation-delay: -3s; }
+
+/* ---------- Hero light show ---------- */
+.hero-fx { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.grid-floor {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 46%; perspective: 260px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to top, #000 15%, transparent 95%); mask-image: linear-gradient(to top, #000 15%, transparent 95%);
+  opacity: .5;
+}
+.grid-floor::before {
+  content: ''; position: absolute; left: -60%; width: 220%; top: -40%; height: 240%;
+  background:
+    linear-gradient(rgba(255,43,214,.9) 2px, transparent 2px) 0 0 / 100% 36px,
+    linear-gradient(90deg, rgba(157,77,255,.9) 2px, transparent 2px) 0 0 / 36px 100%;
+  transform-origin: 50% 100%; transform: rotateX(62deg) translateY(0);
+  animation: grid-run 1.8s linear infinite; will-change: transform;
+}
+@keyframes grid-run { to { transform: rotateX(62deg) translateY(36px); } }
+.scanlines {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.035) 3px 4px);
+}
+.scanlines::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(0,240,255,.10), transparent);
+  transform: translateY(-100px); animation: sweep 6s linear infinite; will-change: transform;
+}
+@keyframes sweep { to { transform: translateY(1100px); } }
+
+.spark {
+  position: absolute; width: 16px; height: 16px; opacity: .85;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  background: #fff; filter: drop-shadow(0 0 6px var(--cyan));
+  animation: twinkle 2.8s ease-in-out infinite;
+}
+.s1 { top: 9%; left: 8%; }
+.s2 { top: 16%; right: 10%; width: 22px; height: 22px; background: var(--pink); animation-delay: -1s; animation-duration: 3.4s; }
+.s3 { top: 52%; left: 4%; width: 12px; height: 12px; background: var(--cyan); animation-delay: -2s; }
+.s4 { top: 40%; right: 5%; width: 14px; height: 14px; background: var(--violet); animation-delay: -.6s; animation-duration: 3.1s; }
+.s5 { top: 4%; left: 46%; width: 12px; height: 12px; background: var(--lime); animation-delay: -1.7s; animation-duration: 3.8s; }
+.s6 { bottom: 12%; right: 22%; width: 18px; height: 18px; animation-delay: -2.4s; animation-duration: 3.3s; }
+@keyframes twinkle {
+  0%, 100% { transform: scale(.3) rotate(0deg); opacity: .25; }
+  50% { transform: scale(1.15) rotate(45deg); opacity: 1; }
+}
+
+/* Neon tube frame around the hero copy, with a light chasing round it */
+@property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.hero-frame { position: relative; max-width: 980px; margin: 0 auto; padding: 40px 18px 34px; border-radius: 24px; }
+.hero-frame::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  border: 2px solid rgba(255,43,214,.85);
+  box-shadow: 0 0 10px var(--pink), 0 0 30px rgba(255,43,214,.55), inset 0 0 14px rgba(255,43,214,.45);
+  animation: buzz 8.2s linear infinite; animation-delay: -1.2s;
+}
+.frame-chase {
+  position: absolute; inset: -3px; border-radius: 27px; padding: 4px; pointer-events: none;
+  background: conic-gradient(from var(--ang), transparent 0 62%, var(--cyan) 75%, #fff 78%, transparent 80% 88%, var(--violet) 96%, transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  filter: drop-shadow(0 0 6px var(--cyan));
+  animation: spin-ang 4s linear infinite;
+}
+@keyframes spin-ang { to { --ang: 360deg; } }
+
+/* Blinking OPEN sign */
+.open-sign {
+  position: absolute; top: -20px; right: 8px; z-index: 2; display: flex; gap: .08em;
+  font-family: var(--display); font-size: 1.05rem; letter-spacing: .12em; line-height: 1; color: #fff;
+  padding: 8px 10px 7px 13px; background: rgba(0,0,0,.85); border: 2px solid var(--pink); border-radius: 10px;
+  box-shadow: 0 0 10px var(--pink), 0 0 26px rgba(255,43,214,.6), inset 0 0 10px rgba(255,43,214,.4);
+  text-shadow: 0 0 4px #fff, 0 0 10px var(--cyan), 0 0 22px var(--cyan);
+  transform: rotate(6deg); animation: buzz 7s linear infinite;
+}
+.open-sign .os-e { animation: letter-drop 4.3s linear infinite; }
+
+/* ---------- Colour-cycling neon light strips between sections ---------- */
+.neon-strip {
+  position: relative; width: min(1140px, calc(100% - 40px)); height: 5px; margin: 0 auto; border-radius: 5px; overflow: hidden;
+  background: var(--pink); box-shadow: 0 0 10px var(--pink), 0 0 28px rgba(157,77,255,.7);
+}
+.neon-strip span {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 300%;
+  background: linear-gradient(90deg, var(--pink), var(--cyan), var(--violet), var(--pink), var(--cyan), var(--violet), var(--pink));
+  animation: strip-run 6s linear infinite; will-change: transform;
+}
+.neon-strip::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 70px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  transform: translateX(-80px); animation: strip-spark 3.2s ease-in-out infinite; will-change: transform;
+}
+.strip-b span { animation-direction: reverse; animation-duration: 7s; }
+.strip-b::after { animation-delay: -1.4s; }
+.strip-c { animation: buzz 10s linear infinite; animation-delay: -4s; }
+.strip-c span { animation-duration: 5s; }
+@keyframes strip-run { to { transform: translateX(-66.666%); } }
+@keyframes strip-spark { to { transform: translateX(1200px); } }
+
+/* ---------- Ticker gets chasing marquee bulbs ---------- */
+.ticker { position: relative; padding: 20px 0; }
+.ticker::before, .ticker::after {
+  content: ''; position: absolute; left: -40px; right: -40px; height: 6px; pointer-events: none;
+  background: radial-gradient(circle, #fff 0 1.5px, var(--cyan) 2px, transparent 3.2px) 0 50% / 18px 6px repeat-x;
+  filter: drop-shadow(0 0 4px var(--cyan)); animation: bulbs 1.2s linear infinite; will-change: transform;
+}
+.ticker::before { top: 4px; }
+.ticker::after { bottom: 4px; animation-direction: reverse; background-image: radial-gradient(circle, #fff 0 1.5px, var(--violet) 2px, transparent 3.2px); filter: drop-shadow(0 0 4px var(--violet)); }
+@keyframes bulbs { to { transform: translateX(18px); } }
+
+/* ---------- Headings cycle their glow through the palette ---------- */
+@keyframes glow-cycle {
+  0%, 100% { text-shadow: var(--glow-pink); }
+  33% { text-shadow: var(--glow-cyan); }
+  66% { text-shadow: var(--glow-uv); }
+}
+.section-heading { animation: glow-cycle 9s ease-in-out infinite; }
+#what-we-do .section-heading, #packages .section-heading { animation-delay: -3s; }
+#process .section-heading, #contact .section-heading { animation-delay: -6s; }
+.font-switcher-heading { animation: glow-cycle 7s ease-in-out infinite; animation-delay: -2s; }
+
+/* ---------- Breathing neon glow on list items (opacity only) ---------- */
+.why-item, .step { isolation: isolate; }
+.why-item::after, .step::after, .contact-form::after {
+  content: ''; position: absolute; inset: -2px; border-radius: inherit; pointer-events: none; z-index: -1;
+  box-shadow: 0 0 0 2px var(--g, var(--pink)), 0 0 26px var(--g, var(--pink));
+  opacity: .25; animation: breathe 2.6s ease-in-out infinite alternate;
+}
+.why-item:nth-child(2)::after, .step:nth-child(2)::after { --g: var(--cyan); animation-delay: -.65s; }
+.why-item:nth-child(3)::after, .step:nth-child(3)::after { --g: var(--violet); animation-delay: -1.3s; }
+.why-item:nth-child(4)::after, .step:nth-child(4)::after { --g: var(--cyan); animation-delay: -1.95s; }
+.contact-form { position: relative; isolation: isolate; border-color: var(--violet); }
+.contact-form::after { --g: var(--cyan); animation-duration: 3s; }
+@keyframes breathe { to { opacity: .95; } }
+
+/* ---------- Font switcher: marching neon dashes ---------- */
+.font-switcher {
+  border: 0; position: relative;
+  background:
+    linear-gradient(90deg, var(--violet) 50%, transparent 0) 0 0 / 22px 3px repeat-x,
+    linear-gradient(90deg, var(--violet) 50%, transparent 0) 0 100% / 22px 3px repeat-x,
+    linear-gradient(0deg, var(--cyan) 50%, transparent 0) 0 0 / 3px 22px repeat-y,
+    linear-gradient(0deg, var(--cyan) 50%, transparent 0) 100% 0 / 3px 22px repeat-y,
+    #000;
+  animation: march 1.4s linear infinite;
+}
+@keyframes march { to { background-position: 22px 0, -22px 100%, 0 -22px, 100% 22px; } }
+
+/* Featured package price hums */
+.package.featured .package-price { display: inline-block; animation: buzz 7.4s linear infinite; animation-delay: -2.5s; }
+
+/* Footer top edge becomes a colour-cycling light strip */
+.footer { position: relative; border-top: 0; }
+.footer::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--cyan), var(--violet), var(--pink));
+  box-shadow: 0 0 14px var(--pink), 0 0 30px rgba(157,77,255,.6);
+}
+
+@media (min-width: 860px) {
+  .hero-frame { padding: 60px 40px 54px; }
+  .open-sign { font-size: 1.5rem; top: -26px; right: 28px; }
+  .spark { width: 22px; height: 22px; }
+}
+
+/* Reduced motion: v2 lights sit still and stay fully lit */
+@media (prefers-reduced-motion: reduce) {
+  .scanlines::after, .neon-strip::after { display: none; }
+  .open-sign, .open-sign .os-e, .logo-b, .hero-frame::before, .strip-c, .package.featured .package-price { opacity: 1; }
+  .spark { opacity: .8; transform: none; }
+  .why-item::after, .step::after, .contact-form::after { opacity: .6; }
+  .card::before, .package::before, .social-proof::before { transform: translate(-50%, -50%) rotate(30deg); }
+}
