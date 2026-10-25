@@ -1,4 +1,4 @@
-/* GRILL CRIMES — concept demo by NEON RIOT Studio
+/* GRILL CRIMES — concept demo by NeonSites
    Palette (4): flame #ff6b1a, mustard #ffd400, ketchup #ff2e4d, pickle #3dffb0 (accent)
    Fonts: Shrikhand (display) + Space Mono (body)
    Safety: no element flashes more than 3x/second; all motion off under reduced motion. */
@@ -142,7 +142,7 @@ a{color:inherit}
 .foot{text-align:center;padding:30px 18px 90px;border-top:1px solid #2a1406;font-size:.8rem;color:#aa9}
 .foot-brand{margin-bottom:8px}
 
-/* NEON RIOT badge */
+/* NeonSites badge */
 .nr-badge{position:fixed;left:10px;bottom:10px;z-index:50;font-family:system-ui,sans-serif;font-size:.72rem;text-decoration:none;color:#fff;background:#000;border:1px solid #ff2bd6;border-radius:999px;padding:6px 12px;box-shadow:0 0 12px rgba(255,43,214,.6)}
 .nr-badge strong{color:#ff2bd6}
 

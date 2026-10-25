@@ -1,4 +1,4 @@
-/* NEON RIOT Studio (placeholder name) — script.js
+/* NeonSites — script.js
    Mobile menu, font switcher (remembered in localStorage), mailto contact form. */
 (() => {
   'use strict';
