@@ -574,3 +574,42 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 400; line-height: 1.1
   .why-item::after, .step::after, .contact-form::after { opacity: .6; }
   .card::before, .package::before, .social-proof::before { transform: translate(-50%, -50%) rotate(30deg); }
 }
+
+
+/* =====================================================================
+   v3: CONCEPT DEMOS. Three live demo sites, previews in each demo's own palette.
+   The font switcher still restyles the preview headlines (.mock-head).
+   ===================================================================== */
+.concept { display: flex; flex-direction: column; }
+.concept figcaption { gap: 6px; align-items: center; }
+.concept figcaption .concept-name { font-family: var(--display); font-size: 1.35rem; letter-spacing: .02em; color: #fff; text-shadow: 0 0 10px var(--a, var(--pink)); }
+.concept-type { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--cyan); }
+.concept-pitch { color: var(--muted); font-size: .95rem; max-width: 40ch; }
+.btn-demo { margin-top: 8px; font-size: .95rem; padding: 12px 22px; color: #000; background: var(--lime); border: 0; border-radius: 999px; text-decoration: none; font-weight: 700; box-shadow: 0 0 0 2px #000, 0 0 0 4px var(--pink), 0 0 22px var(--pink); }
+.btn-demo:hover { transform: translateY(-2px); }
+.c-food .mock { --a: #ff6b1a; --b: #ff2e4d; --c: #ffd400; }
+.c-food .mock-page { background:
+  radial-gradient(ellipse at 50% 100%, rgba(255,107,26,.45), transparent 60%),
+  repeating-linear-gradient(0deg, transparent 0 22px, #1b0d05 22px 24px),
+  repeating-linear-gradient(90deg, transparent 0 46px, #1b0d05 46px 48px), #000; }
+.c-food .mock-logo { font-family: 'Shrikhand', var(--display); }
+.c-food .gc1 { color: #ffd400; text-shadow: 0 0 8px #ff6b1a; }
+.c-food .gc2 { font-family: var(--body); font-weight: 700; font-size: .75rem; letter-spacing: .14em; color: #000; background: #ff2e4d; padding: 1px 4px; text-shadow: none; }
+.c-food .mock-sub b { color: #ffd400; }
+.c-trade .mock { --a: #ffe600; --b: #2ea8ff; --c: #ffe600; border-radius: 4px; }
+.c-trade .mock-page { position: relative; background:
+  radial-gradient(ellipse at 50% 20%, rgba(46,168,255,.35), transparent 65%),
+  linear-gradient(rgba(46,168,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(46,168,255,.16) 1px, transparent 1px), #000;
+  background-size: auto, 26px 26px, 26px 26px, auto; padding-bottom: 40px; }
+.c-trade .mock-logo { font-family: 'Big Shoulders Display', var(--display); font-weight: 900; font-size: 1.3rem; }
+.c-trade .vs2 { color: #ffe600; }
+.c-trade .mock-links { color: #ff3b3b; font-weight: 700; border: 1px solid #ff3b3b; border-radius: 999px; padding: 0 8px; }
+.c-trade .mock-btn { border-radius: 0; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+.mock-hazard { position: absolute; left: 0; right: 0; bottom: 0; height: 16px; background: repeating-linear-gradient(-45deg, #ffe600 0 12px, #000 12px 24px); }
+.c-social .mock { --a: #8a5cff; --b: #ff2e63; --c: #d4ff00; border-radius: 22px; }
+.c-social .mock-page { background: radial-gradient(circle at 85% 15%, rgba(138,92,255,.55), transparent 50%), radial-gradient(circle at 10% 95%, rgba(255,46,99,.4), transparent 50%), #000; }
+.c-social .mock-logo { font-family: 'Unbounded', var(--display); font-weight: 900; font-size: .9rem; }
+.c-social .ss2 { color: #000; background: #d4ff00; padding: 0 4px; margin-left: 2px; }
+.c-social .mock-sub b { color: #d4ff00; }
+.mini-icons { display: inline-flex; gap: 6px; }
+.mini-ic { width: 15px; height: 15px; fill: #fff; filter: drop-shadow(0 0 4px #8a5cff); }
